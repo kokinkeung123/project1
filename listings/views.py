@@ -1,8 +1,14 @@
 from django.shortcuts import render
+from.models import Listing
 
 # Create your views here.
 def index(request):
-    return render(request,'listings/listings.html')
+    # ! get all data from listing databasse
+    listings = Listing.objects.all()
+
+    # ! pass database record in listing 
+    context = {'listings':listings}
+    return render(request,'listings/listings.html',context)
 
 def listing(request):
     return render(request,'listings/listing.html')
